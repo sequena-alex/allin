@@ -1,0 +1,58 @@
+<div
+class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+<h1 class="h1">History</h1>
+</div>
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-md-12">
+        <div class=" card">
+          <div class=" card-header">
+            <h4 class=" card-title">Simple Table</h4>
+          </div>
+          <div class=" card-body">
+            <div class=" table-responsive">
+              <table class=" table tablesorter" id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>Player Count</th>
+                    <th>Duty Profit</th>
+                    <th>Admin Funds</th>
+                    <th>Player Funds</th>
+                    <th>Real Profit</th>
+                    <th>Total Overbets</th>
+                    <th>Alamat Value</th>
+                    <th>Submitted Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let history of pagedHistories">
+                    <td>{{history.playerCount}}</td>
+                    <td>{{history.dutyProfit}}</td>
+                    <td>{{history.adminFunds}}</td>
+                    <td>{{history.playerPondo}}</td>
+                    <td>{{history.totalProfit}}</td>
+                    <td>{{history.totalOverBet}}</td>
+                    <td>{{history.alamat}}</td>
+                    <td>{{history.created_at | date:"medium"}}</td>
+                    <td><button
+                      type="button"
+                      class="btn btn-warning btn-sm mx-2"
+                      (click)="viewSubmittedString(history?.lastSubmittedString)"
+                    >
+                      View Submitted
+                    </button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshHistories()">
+              </ngb-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

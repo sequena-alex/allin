@@ -1,0 +1,186 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h1">Dashboard</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="list-group">
+      <li
+        href="#"
+        class="list-group-item list-group-item-action flex-column align-items-start text-center"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Player Count</h5>
+        </div>
+        <p class="mb-1">
+          {{ history?.playerCount | number: "1.0":"en-US" || 0 }}
+        </p>
+      </li>
+      <li
+        href="#"
+        class="list-group-item list-group-item-action flex-column align-items-start text-center"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Admin Funds</h5>
+        </div>
+        <p class="mb-1">
+          {{ history?.adminFunds | number: "1.0":"en-US" || 0 }}
+        </p>
+      </li>
+      <li
+        href="#"
+        class="list-group-item list-group-item-action flex-column align-items-start text-center"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Players Pondo</h5>
+        </div>
+        <p class="mb-1">
+          {{ history?.playerPondo | number: "1.0":"en-US" || 0 }}
+        </p>
+      </li>
+      <li
+        href="#"
+        class="list-group-item list-group-item-action flex-column align-items-start text-center"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Total Profit</h5>
+        </div>
+        <p class="mb-1">
+          {{ history?.totalProfit | number: "1.0":"en-US" || 0 }}
+        </p>
+      </li>
+      <li
+        href="#"
+        class="list-group-item list-group-item-action flex-column align-items-start text-center"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Total Overbet</h5>
+        </div>
+        <p class="mb-1">
+          {{ history?.totalOverBet | number: "1.0":"en-US" || 0 }}
+        </p>
+      </li>
+      <li
+        href="#"
+        class="list-group-item list-group-item-action flex-column align-items-start text-center"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Alamat</h5>
+        </div>
+        <p class="mb-1">
+          {{ history?.alamat | number: "1.0":"en-US" || 0 }}
+        </p>
+      </li>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h3>Duty Profit ({{ dutyProfit }})</h3>
+        <h4>Current Duty Alamat ({{ history?.currentAlamat || 0 }})</h4>
+        <h4>Last Duty Alamat ({{ history?.lastAlamat || 0 }})</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="alamat-value">Input Last ALAMAT Value</label>
+            <input
+              type="text"
+              class="form-control"
+              id="alamat-value"
+              name="alamat-value"
+              [(ngModel)]="lastAlamat"
+            />
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <form>
+              <label for="string-data">Input String Data</label>
+              <textarea
+                [(ngModel)]="stringData"
+                style="max-height: 100%"
+                class="form-control"
+                name="string-data"
+                id="string-data"
+                rows="10"
+                placeholder=""
+              ></textarea>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary" (click)="generateData()">
+          Generate Data
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-5">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header"><h5>Data Submitted</h5></div>
+      <div class="card-body">
+        <textarea
+          [(ngModel)]="submittedStringData"
+          style="max-height: 100%; background-color: white"
+          class="form-control"
+          name="string-data-submitted"
+          rows="15"
+          readonly
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-3">
+            <h5>Results</h5>
+          </div>
+          <div class="col-md-6 pr">
+            <button
+              type="button"
+              class="btn btn-success btn-sm mx-2"
+              (click)="copyResults()"
+            >
+              Copy Results
+            </button>
+          </div>
+          <!-- <h5>Results</h5> -->
+        </div>
+      </div>
+      <div class="card-body">
+        <textarea
+          [(ngModel)]="stringResults"
+          style="max-height: 100%; background-color: white"
+          class="form-control"
+          id="resultTextArea"
+          name="string-data-results"
+          rows="15"
+          readonly
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header"><h5>Negative Players</h5></div>
+      <div class="card-body">
+        <textarea
+          [(ngModel)]="negativePlayerString"
+          style="max-height: 100%; background-color: white"
+          class="form-control"
+          name="string-data-submitted"
+          rows="15"
+          readonly
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
