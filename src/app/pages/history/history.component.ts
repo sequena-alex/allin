@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Clipboard } from '@angular/cdk/clipboard';
+import Swal from 'sweetalert2';
 
 interface History {
   playerCount: number;
@@ -25,15 +26,20 @@ interface History {
       <h4 class="modal-title">Last Submitted String</h4>
       <button
         type="button"
-        class="btn-close"
+        class="close"
         aria-label="Close"
         (click)="activeModal.dismiss('Cross click')"
-      ></button>
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="white-space: pre-wrap">
       {{ lastSubmittedString }}
     </div>
     <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="copyString()">
+        Copy String
+      </button>
       <button
         type="button"
         class="btn btn-outline-dark"
@@ -47,7 +53,17 @@ interface History {
 export class NgbdModalContent {
   @Input() lastSubmittedString: any;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(private clipboard: Clipboard,public activeModal: NgbActiveModal) {}
+
+  public copyString() {
+    this.clipboard.copy(this.lastSubmittedString);
+    Swal.fire({
+      icon: 'success',
+      title: 'String copied',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 }
 
 @Component({
