@@ -127,6 +127,7 @@ export class DashboardComponent implements OnInit {
     this.calculateAdminPondo(this.adminAgent);
     this.calculatePlayerPondo(this.playerAgent);
     this.calculateTotalProfit();
+    this.history.totalOverBet = 0
     this.calculateTotalOverBet(this.playerAgent);
     this.calculateTotalOverBet(this.bannedAgent);
     this.calculateAlamat();
@@ -298,6 +299,7 @@ export class DashboardComponent implements OnInit {
   }
 
   calculateAlamat() {
+    this.history.alamat = 0
     this.history.alamat =
       this.history.totalProfit + Math.abs(this.history.totalOverBet);
   }
