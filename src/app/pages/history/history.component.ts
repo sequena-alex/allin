@@ -24,6 +24,9 @@ interface History {
   template: `
     <div class="modal-header">
       <h4 class="modal-title">Last Submitted String</h4>
+      <button type="button" class="btn btn-success btn-sm ml-3 mt-1" (click)="copyString()">
+        Copy String
+      </button>
       <button
         type="button"
         class="close"
@@ -37,9 +40,6 @@ interface History {
       {{ lastSubmittedString }}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="copyString()">
-        Copy String
-      </button>
       <button
         type="button"
         class="btn btn-outline-dark"
